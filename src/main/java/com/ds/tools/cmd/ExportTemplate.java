@@ -107,7 +107,7 @@ public abstract class ExportTemplate{
                     sheet1 = new Sheet(1, 0, entityClass, "sheet1", null);
                     sheet1.setAutoWidth(Boolean.TRUE);
                 }
-                DynamicDataSource.setDataSource(dBoffset.getDbName());
+                DynamicDataSource.setDataSource(dBoffset.getDbName());//动态选择数据源
                 _log.debug("当前数据源:{}", dBoffset.getDbName());
                 int startOffset = 0;
                 while (true) {
