@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE dble:schema SYSTEM "schema.dtd">
+<dble:schema xmlns:dble="http://dble.cloud/">
+<schema name="dspsdb" > 
+  <table name="table_user"          dataNode="dndb0"  />    
+  <table name="table_log1" 			dataNode="log1dn$0-5" rule="log_rule" />
+  <table name="table_log2"          dataNode="log2dn$0-5" rule="log_rule" />
+	
+</schema>
+  <dataNode name="dndb0"    		dataHost="db_datahost0" database="dndb0" />
+  <dataNode name="log1dn$0-5"    	dataHost="db_datahost1" database="log1dn$0-5" />
+  <dataNode name="log2dn$0-5"   	dataHost="db_datahost2" database="log2dn$0-5" />
+                                              
+                                                                                                            
+<!-- 配置数据库连接数范围以及数据库基本配置 -->
+<dataHost name="db_datahost0" maxCon="100" minCon="25" balance="1"    switchType="1"  slaveThreshold="100">
+    <heartbeat>show slave status</heartbeat> 
+	<!-- 配置mysql服务器ip，读写分离以及用户名和密码 -->
+	<!-- mysql写配置 -->
+    <writeHost host="hostM1" url="192.168.136.108:3306" user="root" password="123456" >	
+	<!-- mysql读配置 -->
+    <readHost  host="hostS1" url="192.168.136.109:3306" user="root" password="123456" />
+    </writeHost>
+</dataHost>
+<dataHost name="db_datahost1" maxCon="100" minCon="25" balance="1"    switchType="1"  slaveThreshold="100">
+    <heartbeat>show slave status</heartbeat> 
+	<!-- 配置mysql服务器ip，读写分离以及用户名和密码 -->
+	<!-- mysql写配置 -->
+    <writeHost host="hostM1" url="192.168.136.110:3306" user="root" password="123456" >	
+	<!-- mysql读配置 -->
+    <readHost  host="hostS1" url="192.168.136.111:3306" user="root" password="123456" />
+    </writeHost>
+</dataHost>
+
+<dataHost name="db_datahost2" maxCon="100" minCon="25" balance="1"    switchType="1"  slaveThreshold="100">
+    <heartbeat>show slave status</heartbeat> 
+	<!-- 配置mysql服务器ip，读写分离以及用户名和密码 -->
+	<!-- mysql写配置 -->
+    <writeHost host="hostM1" url="192.168.136.112:3306" user="root" password="123456" >	
+	<!-- mysql读配置 -->
+    <readHost  host="hostS1" url="192.168.136.113:3306" user="root" password="123456" />	
+    </writeHost>
+</dataHost>
+
+</dble:schema>

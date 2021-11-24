@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ds.tools.dao.Log2DAO" >
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="com.ds.tools.model.Log2" >
+	<result column="column1" jdbcType="VARCHAR" property="column1" />
+    <result column="column2" jdbcType="VARCHAR" property="column2" />
+    <result column="column3" jdbcType="VARCHAR" property="column3" />
+    <result column="column4" jdbcType="VARCHAR" property="column4" />
+</resultMap>
+
+<sql id="Base_Column_List" >
+	id, ip, mac, NAME, orgName ,regUserAccount, osLoginAccount, policyName, regUserName, filePath, taskID, matchGroupName ,clientTime, reportTime
+</sql>
+
+<!-- 查询列表 -->
+<select id="getLog2ByOffset" resultType="com.ds.tools.model.Log2"  parameterType="java.util.HashMap">
+	select 
+	<include refid="Base_Column_List"/>
+	from table_log2 
+	limit  #{currPage},#{pageSize}
+</select>
+</mapper>   
